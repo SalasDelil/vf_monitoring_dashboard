@@ -29,7 +29,7 @@ export function Sidenav({ brandName, routes }) {
       >
         <Link to="/" className="py-4 flex items-center justify-center text-center">
           <div>
-          <img src="/src/css/leaves.png" width={70} height={70} alt="Logo" className="ml-8" />
+          <img src="/src/css/leaves.png" width={70} height={70} alt="Logo" className="ml-6" />
             <Typography
               variant="h6"
               color={sidenavType === "dark" ? "white" : "green"}
