@@ -5,51 +5,43 @@ import {
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
-// import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+const sensorData = {};
 
-// const SensorData = () => {
-//   const [sensorData, setSensorData] = useState({ humidity: 0, temperature: 0, moisture: 0 });
+const SensorData = () => {
+  const [sensorData, setSensorData] = useState({ humidity: 0, temperature: 0, moisture: 0 });
 
-//   useEffect(() => {
-//     const socket = new WebSocket('ws://your-server-ip:3000');
+  useEffect(() => {
+    const socket = new WebSocket('ws://your-server-ip:3000');
 
-//     socket.onopen = () => {
-//       console.log('WebSocket connection established');
-//     };
+    socket.onopen = () => {
+      console.log('WebSocket connection established');
+    };
 
-//     socket.onmessage = (event) => {
-//       const data = JSON.parse(event.data);
-//       setSensorData(data);
-//     };
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      sensorData = data;
+      setSensorData(data);
+    };
 
-//     socket.onclose = () => {
-//       console.log('WebSocket connection closed');
-//     };
+    socket.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
 
-//     return () => {
-//       socket.close();
-//     };
-//   }, []);
+    return () => {
+      socket.close();
+    };
+  }, []);
+};
 
-//   return (
-//     <div>
-//       <h1>Real-Time Sensor Data</h1>
-//       <p>Humidity: {sensorData.humidity}%</p>
-//       <p>Temperature: {sensorData.temperature}°C</p>
-//       <p>Moisture: {sensorData.moisture}%</p>
-//     </div>
-//   );
-// };
-
-// export default SensorData;
-
+export default SensorData;
 
 export const statisticsCardsData = [
   {
     color: "gray",
     icon: BanknotesIcon,
-    title: "Today's Money",
-    value: "$53k",
+    title: "Current Temperature",
+    value: sensorData.temperature,
     footer: {
       color: "text-green-500",
       value: "+55%",
@@ -59,30 +51,30 @@ export const statisticsCardsData = [
   {
     color: "gray",
     icon: UsersIcon,
-    title: "Today's Users",
-    value: "2,300",
+    title: "Current Humidity",
+    value: sensorData.humidity,
     footer: {
       color: "text-green-500",
-      value: "+3%",
+      value: "3%",
       label: "than last month",
     },
   },
   {
     color: "gray",
     icon: UserPlusIcon,
-    title: "New Clients",
-    value: "3,462",
+    title: "Current Moisture Level",
+    value: "62",
     footer: {
       color: "text-red-500",
-      value: "-2%",
+      value: "2%",
       label: "than yesterday",
     },
   },
   {
     color: "gray",
     icon: ChartBarIcon,
-    title: "Sales",
-    value: "$103,430",
+    title: "Pump Status",
+    value: "30",
     footer: {
       color: "text-green-500",
       value: "+5%",
@@ -91,4 +83,4 @@ export const statisticsCardsData = [
   },
 ];
 
-export default statisticsCardsData;
+// export default statisticsCardsData;
