@@ -64,14 +64,14 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
       <CardHeader
         variant="gradient"
         color={color}
-        floated={false}
-        shadow={false}
+        // floated={false}
+        // shadow={false}
         className="absolute grid h-12 w-12 place-items-center"
       >
         {icon}
       </CardHeader>
       <CardBody className="p-4 text-center">
-        <CircularProgress value={parseFloat(value)} size={100} strokeWidth={8} color={color} />
+        <CircularProgress value={parseFloat(value)} size={120} strokeWidth={8} color="gray" />
         <Typography variant="small" className="font-normal text-blue-gray-600 mt-2">
           {title}
         </Typography>

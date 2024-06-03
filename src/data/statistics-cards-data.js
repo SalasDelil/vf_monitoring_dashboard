@@ -1,11 +1,9 @@
-import {
-  BanknotesIcon,
-  UserPlusIcon,
-  UsersIcon,
-  ChartBarIcon,
-} from "@heroicons/react/24/solid";
-
 import { useEffect, useState } from 'react';
+
+import Temperature from "@/assets/weather-icons/Temperature";
+import Humidity from  "@/assets/weather-icons/Humidity";
+import SoilMoisture from "@/assets/weather-icons/SoilMoisture";
+
 const sensorData = {};
 
 const SensorData = () => {
@@ -34,12 +32,12 @@ const SensorData = () => {
   }, []);
 };
 
-export default SensorData;
+// export default SensorData;
 
 export const statisticsCardsData = [
   {
-    color: "gray",
-    icon: BanknotesIcon,
+    color: "light-blue",
+    icon: Temperature,
     title: "Current Temperature",
     value: sensorData.temperature,
     footer: {
@@ -49,8 +47,8 @@ export const statisticsCardsData = [
     },
   },
   {
-    color: "gray",
-    icon: UsersIcon,
+    color: "light-blue",
+    icon: Humidity,
     title: "Current Humidity",
     value: sensorData.humidity,
     footer: {
@@ -60,8 +58,8 @@ export const statisticsCardsData = [
     },
   },
   {
-    color: "gray",
-    icon: UserPlusIcon,
+    color: "light-blue",
+    icon: SoilMoisture,
     title: "Current Moisture Level",
     value: "62",
     footer: {
@@ -71,8 +69,8 @@ export const statisticsCardsData = [
     },
   },
   {
-    color: "gray",
-    icon: ChartBarIcon,
+    color: "light-blue",
+    icon: Temperature,
     title: "Pump Status",
     value: "30",
     footer: {
@@ -83,4 +81,4 @@ export const statisticsCardsData = [
   },
 ];
 
-// export default statisticsCardsData;
+export default statisticsCardsData;

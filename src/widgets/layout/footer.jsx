@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Typography } from "@material-tailwind/react";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
-export function Footer({ brandName, brandLink, routes }) {
+export function Footer({ Silvanus, SilvanusLink, routes }) {
   const year = new Date().getFullYear();
 
   return (
@@ -12,13 +12,13 @@ export function Footer({ brandName, brandLink, routes }) {
           &copy; {year}, made with{" "}
           <HeartIcon className="-mt-0.5 inline-block h-3.5 w-3.5 text-red-600" /> by{" "}
           <a
-            href={brandLink}
+            href={SilvanusLink}
             target="_blank"
             className="transition-colors hover:text-blue-500 font-bold"
           >
-            {brandName}
+            {Silvanus}
           </a>{" "}
-          for a better web.
+          for a better monitoring.
         </Typography>
         <ul className="flex items-center gap-4">
           {routes.map(({ name, path }) => (
@@ -41,10 +41,10 @@ export function Footer({ brandName, brandLink, routes }) {
 }
 
 Footer.defaultProps = {
-  brandName: "Creative Tim",
-  brandLink: "https://www.creative-tim.com",
+  Silvanus: "Silvanus",
+  SilvanusLink: "https://www.creative-tim.com",
   routes: [
-    { name: "Creative Tim", path: "https://www.creative-tim.com" },
+    { name: "Github", path: "https://github.com/SalasDelil/vf_monitoring_dashboard" },
     { name: "About Us", path: "https://www.creative-tim.com/presentation" },
     { name: "Blog", path: "https://www.creative-tim.com/blog" },
     { name: "License", path: "https://www.creative-tim.com/license" },
@@ -52,8 +52,8 @@ Footer.defaultProps = {
 };
 
 Footer.propTypes = {
-  brandName: PropTypes.string,
-  brandLink: PropTypes.string,
+  Silvanus: PropTypes.string,
+  SilvanusLink: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),
 };
 

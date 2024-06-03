@@ -1,12 +1,12 @@
 import { chartsConfig } from "@/configs";
 
-const websiteViewsChart = {
+const TemperatureViewsChart = {
   type: "bar",
   height: 220,
   series: [
     {
-      name: "Views",
-      data: [50, 20, 10, 22, 50, 10, 40],
+      name: "Temp",
+      data: [24, 23, 25, 22, 20, 20, 27],
     },
   ],
   options: {
@@ -25,13 +25,13 @@ const websiteViewsChart = {
   },
 };
 
-const dailySalesChart = {
+const HumidityViewsChart = {
   type: "line",
   height: 220,
   series: [
     {
-      name: "Sales",
-      data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+      name: "Humi",
+      data: [50, 55, 48, 50, 48, 50, 52],
     },
   ],
   options: {
@@ -45,28 +45,18 @@ const dailySalesChart = {
     },
     xaxis: {
       ...chartsConfig.xaxis,
-      categories: [
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: ["M", "T", "W", "T", "F", "S", "S"],
     },
   },
 };
 
-const completedTaskChart = {
+const SoilMoistureViewsChart = {
   type: "line",
   height: 220,
   series: [
     {
-      name: "Sales",
-      data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+      name: "Mois",
+      data: [50, 40, 45, 56, 37, 67, 58],
     },
   ],
   options: {
@@ -80,51 +70,32 @@ const completedTaskChart = {
     },
     xaxis: {
       ...chartsConfig.xaxis,
-      categories: [
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: ["1hr", "2hr", "3hr", "4hr", "5hr", "6hr", "7hr"],
     },
   },
-};
-const completedTasksChart = {
-  ...completedTaskChart,
-  series: [
-    {
-      name: "Tasks",
-      data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-    },
-  ],
 };
 
 export const statisticsChartsData = [
   {
     color: "white",
-    title: "Website View",
-    description: "Last Campaign Performance",
+    title: "Temperature Changes",
+    description: "Daily temperature changes dataflow chart.",
     footer: "campaign sent 2 days ago",
-    chart: websiteViewsChart,
+    chart: TemperatureViewsChart,
   },
   {
     color: "white",
-    title: "Daily Sales",
-    description: "15% increase in today sales",
+    title: "Humidity Changes",
+    description: "Daily humidity changes dataflow chart.",
     footer: "updated 4 min ago",
-    chart: dailySalesChart,
+    chart: HumidityViewsChart,
   },
   {
     color: "white",
-    title: "Completed Tasks",
-    description: "Last Campaign Performance",
+    title: "Moisture Changes",
+    description: "Hourly moisture changes.",
     footer: "just updated",
-    chart: completedTasksChart,
+    chart: SoilMoistureViewsChart,
   },
 ];
 
