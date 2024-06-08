@@ -18,7 +18,7 @@ export function Footer({ Silvanus, SilvanusLink, routes }) {
           >
             {Silvanus}
           </a>{" "}
-          for a better monitoring.
+          for a better change.
         </Typography>
         <ul className="flex items-center gap-4">
           {routes.map(({ name, path }) => (

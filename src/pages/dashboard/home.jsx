@@ -19,8 +19,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
+import SensorData from "../../data/statistics-cards-data";
+
 import {
-  statisticsCardsData,
   statisticsChartsData,
   projectsTableData,
   ordersOverviewData,
@@ -28,9 +29,12 @@ import {
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 
 export function Home() {
+  const statisticsCardsData = SensorData();
+
   return (
     <div className="mt-12">
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+        {/* <SensorData /> */}
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
