@@ -1,17 +1,15 @@
 import {
   HomeIcon,
   WifiIcon,
-  UserCircleIcon,
-  TableCellsIcon,
   InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-// import LeafSVG from "@/public/img/leaf-svgrepo-com.svg"
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
-// import {LeafIcon} from "@/public/img/leaf-svgrepo-com";
+import ConnectedDevices from "./pages/dashboard/device";
+// import Tasks from "./pages/dashboard/task";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -29,23 +27,16 @@ export const routes = [
       },
       {
         icon: <WifiIcon {...icon} />,
-        // name: "profile",
-        name: "device",
+        name: "devices",
         path: "/device",
-        element: <Profile />,
+        element: <ConnectedDevices />,
       },
       {
         icon: <RectangleStackIcon {...icon} />,
-        name: "task",
-        path: "/tasks",
+        name: "tasks",
+        path: "/task",
         element: <Tables />,
       },
-      // {
-      //   icon: <LeafIcon {...icon} />,
-      //   name: "crop",
-      //   path: "/crop",
-      //   element: <Tables />,
-      // },
       {
         icon: <InformationCircleIcon {...icon} />,
         name: "notifications",
