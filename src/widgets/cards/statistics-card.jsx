@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 
-function CircularProgress({ value, size, strokeWidth, color }) {
+function CircularProgress({ value, unit, size, strokeWidth, color }) {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (value / 100) * circumference;
@@ -45,7 +45,7 @@ function CircularProgress({ value, size, strokeWidth, color }) {
         fontSize="1.5em"
         fill={color}
       >
-        {value}%
+        {value}{unit}
       </text>
     </svg>
   );
@@ -53,12 +53,13 @@ function CircularProgress({ value, size, strokeWidth, color }) {
 
 CircularProgress.propTypes = {
   value: PropTypes.number.isRequired,
+  unit: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
 };
 
-export function StatisticsCard({ color, icon, title, value, footer }) {
+export function StatisticsCard({ color, icon, title, value, unit, footer }) {
   return (
     <Card className="border border-blue-gray-100 shadow-sm">
       <CardHeader
@@ -71,7 +72,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         {icon}
       </CardHeader>
       <CardBody className="p-4 text-center">
-        <CircularProgress value={parseFloat(value)} size={120} strokeWidth={8} color="gray" />
+        <CircularProgress value={parseFloat(value)} unit={unit} size={120} strokeWidth={8} color="gray" />
         <Typography variant="small" className="font-normal text-blue-gray-600 mt-2">
           {title}
         </Typography>

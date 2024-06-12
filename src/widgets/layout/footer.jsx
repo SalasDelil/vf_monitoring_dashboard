@@ -6,11 +6,11 @@ export function Footer({ Silvanus, SilvanusLink, routes }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="py-2">
-      <div className="flex w-full flex-wrap items-center justify-center gap-6 px-2 md:justify-between">
-        <Typography variant="small" className="font-normal text-inherit">
+    <footer className="fixed bottom-0 py-2 bg-white shadow-md">
+      <div className="flex w-full justify-between items-center px-4">
+        <Typography variant="small" className="font-normal text-inherit" mx-8>
           &copy; {year}, made with{" "}
-          <HeartIcon className="-mt-0.5 inline-block h-3.5 w-3.5 text-red-600" /> by{" "}
+          <HeartIcon className=" inline-block h-3.5 w-3.5 text-red-600" /> by{" "}
           <a
             href={SilvanusLink}
             target="_blank"
@@ -18,9 +18,9 @@ export function Footer({ Silvanus, SilvanusLink, routes }) {
           >
             {Silvanus}
           </a>{" "}
-          for a better monitoring.
+          for a better change.
         </Typography>
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-8 mx-8">
           {routes.map(({ name, path }) => (
             <li key={name}>
               <Typography
@@ -40,14 +40,16 @@ export function Footer({ Silvanus, SilvanusLink, routes }) {
   );
 }
 
+
+
 Footer.defaultProps = {
   Silvanus: "Silvanus",
-  SilvanusLink: "https://www.creative-tim.com",
+  SilvanusLink: "https://github.com/SalasDelil/vf_monitoring_dashboard",
   routes: [
     { name: "Github", path: "https://github.com/SalasDelil/vf_monitoring_dashboard" },
-    { name: "About Us", path: "https://www.creative-tim.com/presentation" },
-    { name: "Blog", path: "https://www.creative-tim.com/blog" },
-    { name: "License", path: "https://www.creative-tim.com/license" },
+    { name: "About Us" },
+    { name: "Blog" },
+    { name: "License", },
   ],
 };
 
