@@ -6,7 +6,7 @@ import SoilMoisture from "@/assets/weather-icons/SoilMoisture";
 
 export function SensorData() {
 
-  const [sensorData, setSensorData] = useState({ humidity: 0, temperature: 0, moisture: 0 });
+  const [sensorData, setSensorData] = useState({ unit_id:"", name:"", status:false, humidity: 0, temperature: 0, moisture: 0 });
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:3001');
@@ -17,7 +17,11 @@ export function SensorData() {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log(data);
       setSensorData({
+        unit_id: data.unit_id,
+        name: data.name,
+        status: data.status,
         humidity: parseFloat(data.humidity).toFixed(2),
         temperature: parseFloat(data.temperature).toFixed(2),
         moisture: parseFloat(data.moisture).toFixed(2),
@@ -67,18 +71,6 @@ export function SensorData() {
       footer: {
         color: "text-red-500",
         value: "2%",
-        label: "than yesterday",
-      },
-    },
-    {
-      color: "light-blue",
-      icon: Temperature,
-      title: "Pump Status",
-      value: "30",
-      unit: "%",
-      footer: {
-        color: "text-green-500",
-        value: "+5%",
         label: "than yesterday",
       },
     },

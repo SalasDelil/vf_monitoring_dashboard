@@ -4,26 +4,20 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
-  Tooltip,
-  Button,
   Input,
   IconButton,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
+  Button,
+  Tooltip,
 } from "@material-tailwind/react";
 import {
   TrashIcon,
   PlusIcon,
   PencilIcon,
-  SearchIcon,
-  CalendarIcon,
-  FlagIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Modal from './modal'; // Ensure this import path is correct based on your project structure
 
 export function Tasks() {
   const [tasks, setTasks] = useState([
@@ -65,7 +59,7 @@ export function Tasks() {
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>
-        <CardHeader variant="gradient" color="blue" className="mb-4 p-6">
+        <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
             Tasks
           </Typography>
@@ -74,10 +68,10 @@ export function Tasks() {
           <div className="mb-6 flex justify-between">
             <div className="flex items-center gap-2">
               <Input
+                icon={<MagnifyingGlassIcon className="h-5 w-5 text-blue-gray-500" />}
                 placeholder="Search Tasks"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                icon={<SearchIcon className="h-5 w-5 text-blue-gray-500" />}
               />
             </div>
             <div className="flex items-center gap-2">
@@ -190,49 +184,43 @@ export function Tasks() {
         </CardBody>
       </Card>
 
-      <Modal open={isEditing} onClose={() => setIsEditing(false)}>
-        <ModalHeader>Edit Task</ModalHeader>
-        <ModalBody>
-          <div className="flex flex-col gap-4">
-            <Input
-              label="Task Title"
-              value={editTask?.title || ""}
-              onChange={(e) => setEditTask({ ...editTask, title: e.target.value })}
-            />
-            <Input
-              label="Task Description"
-              value={editTask?.description || ""}
-              onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
-            />
-            <DatePicker
-              selected={editTask?.dueDate || new Date()}
-              onChange={(date) => setEditTask({ ...editTask, dueDate: date })}
-              className="border rounded px-3 py-2"
-            />
-            <select
-              value={editTask?.priority || "Medium"}
-              onChange={(e) => setEditTask({ ...editTask, priority: e.target.value })}
-              className="border rounded px-3 py-2"
-            >
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
-            </select>
-          </div>
-        </ModalBody>
-        <ModalFooter>
-          <Button variant="text" color="red" onClick={() => setIsEditing(false)}>
-            Cancel
+      <Modal
+        isOpen={isEditing}
+        onClose={() => setIsEditing(false)}
+        title="Edit Task"
+      >
+        <div className="flex flex-col gap-4">
+          <Input
+            label="Task Title"
+            value={editTask?.title || ""}
+            onChange={(e) => setEditTask({ ...editTask, title: e.target.value })}
+          />
+          <Input
+            label="Task Description"
+            value={editTask?.description || ""}
+            onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
+          />
+          <DatePicker
+            selected={editTask?.dueDate || new Date()}
+            onChange={(date) => setEditTask({ ...editTask, dueDate: date })}
+            className="border rounded px-3 py-2"
+          />
+          <select
+            value={editTask?.priority || "Medium"}
+            onChange={(e) => setEditTask({ ...editTask, priority: e.target.value })}
+            className="border rounded px-3 py-2"
+          >
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <Button onClick={handleUpdateTask} color="blue">
+            Update Task
           </Button>
-          <Button variant="gradient" color="green" onClick={handleUpdateTask}>
-            Save
-          </Button>
-        </ModalFooter>
+        </div>
       </Modal>
     </div>
   );
 }
-
-Tasks.displayName = "/src/pages/dashboard/task.jsx";
 
 export default Tasks;

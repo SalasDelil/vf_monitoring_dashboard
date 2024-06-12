@@ -28,6 +28,7 @@ export function ConnectedDevices() {
   
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        console.log(data);
         setDevices((prevDevices) => {
           const updatedDevices = [...prevDevices];
           const deviceIndex = updatedDevices.findIndex((d) => d.id === data.id);
@@ -58,7 +59,7 @@ export function ConnectedDevices() {
     }, [searchTerm, devices]);
   
     return (
-      <div className="mx-3 mt-14 mb-6 lg:mx-4 border border-blue-gray-100">
+      <div className="mx-2 mt-8 mb-6 lg:mx-4">
         <Card className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <Typography variant="h4" color="blue-gray">
@@ -73,18 +74,25 @@ export function ConnectedDevices() {
               />
             </div>
           </div>
+          {devices.length === 0 && 
+            <>
+              <div className="">
+                <img src="/img/no-internet-connection.webp" alt="No connection" />
+              </div>
+            </>
+          }
           <div className="grid gap-12 px-4 lg:grid-cols-2 xl:grid-cols-3">
             {filteredDevices.map((device) => (
-              <Card key={device.id} color="transparent" shadow={false} className="border border-blue-gray-100">
-                <CardHeader floated={false} className="mx-0 mt-0 mb-4 h-32 bg-blue-gray-100">
-                  <Typography variant="h6" color="blue-gray" className="text-center pt-4">
+              <Card key={device.unit_id} color="transparent" shadow={false} className="border border-blue-gray-100">
+                <CardHeader floated={false} className="mx-0 mt-0 mb-4 h-28 bg-[url('/img/background-image.png')] bg-cover	bg-center">
+                  <Typography variant="h6" color="white" className="text-center pt-4">
                     {device.name}
                   </Typography>
                 </CardHeader>
                 <CardBody className="py-2 px-4">
                   <div className="flex justify-between mb-4">
                     <Typography variant="small" className="font-normal text-blue-gray-500">
-                      ID: {device.id}
+                      ID: {device.unit_id}
                     </Typography>
                     <Typography variant="small" className="font-normal text-blue-gray-500">
                       Status: {device.status ? "Online" : "Offline"}
@@ -96,7 +104,7 @@ export function ConnectedDevices() {
                         Temperature:
                       </Typography>
                       <Typography variant="small" className="font-normal text-blue-gray-700">
-                        {device.temperature}°C
+                        {parseFloat(device.temperature).toFixed(2)}°C
                       </Typography>
                     </div>
                     <div className="flex items-center justify-between">
@@ -104,7 +112,7 @@ export function ConnectedDevices() {
                         Humidity:
                       </Typography>
                       <Typography variant="small" className="font-normal text-blue-gray-700">
-                        {device.humidity}%
+                        {parseFloat(device.humidity).toFixed(2)}%
                       </Typography>
                     </div>
                     <div className="flex items-center justify-between">
@@ -117,7 +125,7 @@ export function ConnectedDevices() {
                     </div>
                   </div>
                 </CardBody>
-                <CardFooter className="mt-6 flex items-center justify-between py-0 px-4">
+                <CardFooter className="mt-6 mb-2 flex items-center justify-between py-0 px-4">
                   <Button variant="outlined" size="sm">
                     View Details
                   </Button>

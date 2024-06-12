@@ -8,8 +8,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
-import ConnectedDevices from "./pages/dashboard/device";
-// import Tasks from "./pages/dashboard/task";
+import ConnectedDevices from "@/pages/dashboard/device";
+import Tasks from "@/pages/dashboard/tasks";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -34,8 +34,8 @@ export const routes = [
       {
         icon: <RectangleStackIcon {...icon} />,
         name: "tasks",
-        path: "/task",
-        element: <Tables />,
+        path: "/tasks",
+        element: <Tasks />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,

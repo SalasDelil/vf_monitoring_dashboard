@@ -1,40 +1,22 @@
 import React from "react";
-import {
-  Typography,
-  Card,
-  CardHeader,
-  CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Progress,
-} from "@material-tailwind/react";
-import {
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
+import { Typography } from "@material-tailwind/react";
+
 import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
-import SensorData from "../../data/statistics-cards-data";
 
-import {
-  statisticsChartsData,
-  projectsTableData,
-  ordersOverviewData,
-} from "@/data";
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import SensorData from "@/data/statistics-cards-data";
+import statisticsChartsData from "@/data/statistics-charts-data";
+
+import { ClockIcon } from "@heroicons/react/24/solid";
+import PumpStateSwitch from "../../widgets/cards/pump-state";
 
 export function Home() {
   const statisticsCardsData = SensorData();
+  // const statisticsChartsData = StatisticsCharts();
 
   return (
     <div className="mt-12">
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        {/* <SensorData /> */}
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
@@ -51,6 +33,7 @@ export function Home() {
             }
           />
         ))}
+        <PumpStateSwitch deviceId={"unit1"}/>
       </div>
       <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {statisticsChartsData.map((props) => (
